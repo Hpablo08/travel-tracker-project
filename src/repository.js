@@ -8,8 +8,8 @@ class Repository {
     return this.data.filter(trip => trip[property] === id)
   }
 
-  findDestinations(travelersTrips) {
-    const tripDestinationIDs = travelersTrips
+  findDestinations(destinationRepository) {
+    const tripDestinationIDs = destinationRepository
       .map(trip => trip.destinationID)
 
     return this.data.reduce((acc, destination) => {

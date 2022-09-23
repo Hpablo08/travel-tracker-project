@@ -11,6 +11,10 @@ import './images/turing-logo.png'
 // DOM ELEMENTS ***************************************************
 const travelerName = document.querySelector('.display-name')
 const destinations = document.querySelector('.destination-name')
+const upcomingTrips = document.querySelector('.upcoming-destination')
+const pastTrips = document.querySelector('.past-destination')
+const pendingTrips = document.querySelector('.pending-destination')
+//const todaysDate
 
 // GLOBAL DATA ***************************************************
 
@@ -60,12 +64,38 @@ function displayTravelerData() {
 
 function displayDestinations() {
   // need to set date of today to access the past and future trips
-  const todaysDate = 
-  destinations.innerText = randomTraveler.destinations.map((place) => place.destination)
+  // const todaysDate = new Date().toLocaleDateString().split('/').reverse().join('/')
+  const todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
+  console.log(todaysDate)
+
+  randomTraveler.trips.forEach(trip => {
+      const destinations = randomTraveler.destinations.find(destination => trip.destinationID === destination.id)
+     if (trip.date < todaysDate) {
+      pastTrips.innerText += destinations.destination
+      }
+      })
+  }
+
+  //this gets me to the destination
+  // const destination = randomTraveler.destinations.map((place) => place.destination)
+  // if (trip.date < todaysDate){
+
+  // }
 
 //randomTraveler.trips.status === 'approved' vs pending
+// compare trip.date
 
-}
+
+// 8/3/2018
+// let today = new Date().toLocaleDateString()
+// console.log(today)
+
+//2018-08-03
+//let today = new Date().toISOString().slice(0, 10)
+//console.log(today)
+
+
+
 
 
 

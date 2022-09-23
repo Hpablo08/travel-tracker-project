@@ -13,6 +13,7 @@ class Traveler {
   setTravelerData(repo, dataArray, property) {
    this[dataArray] = repo.findTraveler(this.id, property)
   }
+
   setTravelerDestinations(dataset) {
     this.destinations = dataset.findDestinations(this.trips);
   }
