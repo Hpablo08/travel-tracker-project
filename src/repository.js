@@ -4,7 +4,7 @@ class Repository {
     this.data = data
   }
 
-  findTravelerTrips(id, property) {
+  findTraveler(id, property) {
     return this.data.filter(trip => trip[property] === id)
   }
 

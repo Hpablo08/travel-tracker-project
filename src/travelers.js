@@ -10,7 +10,7 @@ class Traveler {
     return this.name.split(' ', 1)[0]
   }
   setTravelerTrips(data, property) {
-   this.trips = data.findTravelerTrips(this.id, property)
+   this.trips = data.findTraveler(this.id, property)
  }
 
  setTravelerDestinations(data) {
