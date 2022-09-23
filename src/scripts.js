@@ -8,6 +8,10 @@ import Traveler from './travelers';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
+// DOM ELEMENTS ***************************************************
+const travelerName = document.querySelector('.display-name')
+const destinations = document.querySelector('.destination-name')
+
 // GLOBAL DATA ***************************************************
 
 let currentTraveler
@@ -41,13 +45,12 @@ function getRandomTraveler(users) {
   return new Traveler(randomTravelerData[0]);
 }
 
-const travelerName = document.querySelector('.display-name')
+
 
 function displayData() {
   displayTravelerData()
-  displayTravelerData
-  //travelerName.innerText = currentTraveler.name
-  //  travelerName.innerText = 'Hazel'
+  displayDestinations()
+
 }
 
 function displayTravelerData() {
@@ -55,11 +58,22 @@ function displayTravelerData() {
 
 }
 
+function displayDestinations() {
+  // need to set date of today to access the past and future trips
+  const todaysDate = 
+  destinations.innerText = randomTraveler.destinations.map((place) => place.destination)
+
+//randomTraveler.trips.status === 'approved' vs pending
+
+}
 
 
 
-// DOM ELEMENTS ***************************************************
+
+
 
 
 // EVENT LISTENERS ************************************************
+
+
 // EVENT HANDLERS *************************************************
