@@ -1,16 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
+<!DOCTYPEhtml>
+  <html lang='en'>
 
-</body>
-</html>
+  <head>
+    <link rel='stylesheet' href='./styles.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <div class='top-nav'>
+        <img class="" src="" alt="">
+        <h1>Travel Tracker</h1>
+        <p class='display-name'>Hello ! </p>
+        <article class='log-in'>
+          <input class='user-name' id='btn' name='username' size='15' maxlength='30' />
+          <button type=submit id='btn' class='logInButton'>Login</button>
+          <br>
+          <div id="main">
+            <button class="nav-btn-1" title='Calendar'><span class="material-icons">&#xe935;</span></button>
+
+            <button class="nav-btn-2" title='Profiles'><span class="material-icons">&#xe0ba;</span></button>
+
+            <button class="nav-btn-3" title='Statistics'><span class="material-icons" >&#xef3e;</span></button>
+
+            <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+          </div>
+        </article>
+        <article class='log-in'>
+      </div>
+    </header>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">Home</a>
+      <a href="#">Jobs</a>
+      <a href="#">Favorites</a>
+      <a href="#">Calendar</a>
+    </div>
+    <div class='header-for-clients'>
+      <p class='client-header'>Active Applications</p>
+    </div>
+    <section class='cards-container'>
+      <article class='card'>
+        <button class="fav-btn" title='Add Favorite'>&#10029;</button>
+        <img class="card-img" src="" alt="">
+        <section class='card-description'>
+          <h4>Name:</h4>
+          <h5>Job Type: </h5>
+          <h5>Description:</h5>
+          <button class="add-btn" title='Add User'>&#43;</button>
+        </section>
+      </article>
+      <article class='card'>
+        <button class="fav-btn" title='Add Favorite'>&#10029;</button>
+        <img class="card-img" src="" alt="">
+        <section class='card-description'>
+          <h4>Name:</h4>
+          <h5>Job Type: </h5>
+          <h5>Description:</h5>
+          <button class="add-btn" title='Add User'>&#43;</button>
+        </section>
+      </article>
+      <article class='card'>
+        <button class="fav-btn" title='Add Favorite'>&#10029;</button>
+        <img class="card-img" src= alt="">
+        <section class='card-description'>
+          <h4>Name: </h4>
+          <h5>Job Type: </h5>
+          <h5>Description:</h5>
+          <button class="add-btn" title='Add User'>&#43;</button>
+        </section>
+      </article>
+
+    </section>
+    <script src="bundle.js"></script>
+  </body>
+
+  </html>
+
+  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
