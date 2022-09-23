@@ -14,6 +14,7 @@ const destinations = document.querySelector('.destination-name')
 const upcomingTrips = document.querySelector('.upcoming-destination')
 const pastTrips = document.querySelector('.past-destination')
 const pendingTrips = document.querySelector('.pending-destination')
+const cardsContainer = document.querySelector('.cards-container')
 //const todaysDate
 
 // GLOBAL DATA ***************************************************
@@ -69,13 +70,29 @@ function displayDestinations() {
   console.log(todaysDate)
 
   randomTraveler.trips.forEach(trip => {
-      const destinations = randomTraveler.destinations.find(destination => trip.destinationID === destination.id)
+      const travelerDestinations = randomTraveler.destinations.find(destination => trip.destinationID === destination.id)
      if (trip.date < todaysDate) {
-      pastTrips.innerText += destinations.destination
+      //pastTrips.innerText += travelerDestinations.destination
+      displayTripCards(travelerDestinations, trip)
       }
       })
   }
 
+
+function displayTripCards(travelerDestinations, trip) {
+  //cardsContainer.innerHTML = ""
+  cardsContainer.innerHTML += ` <article class='card'>
+        <img class="card-img" src="${travelerDestinations.image}" alt="${travelerDestinations.alt}">
+        <section class='card-description'>
+          <h4 class='destination-name'>${travelerDestinations.destination}</h4>
+          <p>${trip.date}</p>
+          <h4 class='upcoming-destination'></h4>
+          <h4 class='past-destination'></h4>
+          <h4 class='pending-destination'></h4>
+
+        </section>
+      `
+}
   //this gets me to the destination
   // const destination = randomTraveler.destinations.map((place) => place.destination)
   // if (trip.date < todaysDate){
