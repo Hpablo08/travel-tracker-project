@@ -1,4 +1,7 @@
-import { fetchData, postData } from './apiCalls';
+import {
+  fetchData,
+  postData
+} from './apiCalls';
 import './css/styles.css';
 import Repository from './repository';
 import Traveler from './travelers';
@@ -22,33 +25,34 @@ Promise.all([fetchData("travelers"), fetchData("trips"), fetchData("destinations
 
 function setData(data) {
   currentTraveler = new Repository(data[0].travelers)
-  console.log('display', currentTraveler)
-  randomTraveler = getRandomTraveler(currentTraveler.data);
-  console.log('traveler class', currentTraveler)
   tripRepository = new Repository(data[1].trips)
   destinationRepository = new Repository(data[2].destinations)
-  randomTraveler.setTravelerTrips(tripRepository, 'userID')
-  randomTraveler.setTravelerDestinations(destinationRepository)
-  displayData()
-  }
+  randomTraveler = getRandomTraveler(currentTraveler.data)
+  randomTraveler.setTravelerData(tripRepository, 'trips', 'userID')
+  randomTraveler.setTravelerDestinations(destinationRepository);
 
-  function getRandomTraveler(users) {
-    const randomIndex = Math.floor(Math.random() * users.length);
-    const randomTravelerData = currentTraveler.findTraveler(randomIndex, 'id');
-    return new Traveler(randomTravelerData[0]);
-  }
+  console.log('random', randomTraveler)
+  displayData()
+}
+
+function getRandomTraveler(users) {
+  const randomIndex = Math.floor(Math.random() * users.length);
+  const randomTravelerData = currentTraveler.findTraveler(randomIndex, 'id');
+  return new Traveler(randomTravelerData[0]);
+}
 
 const travelerName = document.querySelector('.display-name')
 
-  function displayData() {
-    displayTravelerData()
-    displayTravelerData
-    //travelerName.innerText = currentTraveler.name
+function displayData() {
+  displayTravelerData()
+  displayTravelerData
+  //travelerName.innerText = currentTraveler.name
   //  travelerName.innerText = 'Hazel'
-  }
+}
 
 function displayTravelerData() {
   travelerName.innerText = randomTraveler.findFirstName()
+
 }
 
 

@@ -9,13 +9,13 @@ class Traveler {
   findFirstName() {
     return this.name.split(' ', 1)[0]
   }
-  setTravelerTrips(data, property) {
-   this.trips = data.findTraveler(this.id, property)
- }
 
- setTravelerDestinations(data) {
-   this.destinations = data.findTravelerDestinations(this.trips)
- }
+  setTravelerData(repo, dataArray, property) {
+   this[dataArray] = repo.findTraveler(this.id, property)
+  }
+  setTravelerDestinations(dataset) {
+    this.destinations = dataset.findDestinations(this.trips);
+  }
 }
 
 
