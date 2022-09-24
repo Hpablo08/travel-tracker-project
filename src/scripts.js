@@ -15,6 +15,7 @@ const upcomingTrips = document.querySelector('.upcoming-destination')
 const pastTrips = document.querySelector('.past-destination')
 const tripStatus = document.querySelector('.trip-status')
 const cardsContainer = document.querySelector('.cards-container')
+const totalMoneySpent = document.querySelector('.total-money-spent')
 //const todaysDate
 
 // GLOBAL DATA ***************************************************
@@ -56,11 +57,12 @@ function displayData() {
   displayTravelerData()
   displayDestinations()
   randomTraveler.calcMoneySpent()
+
 }
 
 function displayTravelerData() {
   travelerName.innerText = randomTraveler.findFirstName()
-
+  totalMoneySpent.innerText = randomTraveler.calcMoneySpent()
 }
 
 function displayDestinations() {
