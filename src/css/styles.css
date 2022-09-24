@@ -23,6 +23,9 @@ header, body {
   font-size: 25px;
 }
 
+.trip-request-section {
+  text-align: center;
+}
 /* Cards  */
 .cards-container {
   display: grid;
@@ -32,6 +35,7 @@ header, body {
   grid-row-gap: 0px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-start;
   grid-area: 3 / 1 / 6 / 6;
   position: relative;
@@ -77,98 +81,13 @@ h4, h5 {
   height: 90px;
 }
 
-/* The sidebar menu & Buttons */
-.sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #455A64;
-  overflow-x: hidden;
-  padding-top: 60px;
-  transition: 0.5s;
-}
 
-.sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #212121;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
-  color: #f1f1f1;
-}
-
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.fav-btn {
-  background-color: #BDBDBD;
-  color: #455A64;
-  border: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 83px 0 0px 20px;
-}
-
-.nav-btn-1 {
-  position: absolute;
-  left: 20px;
-  background-color: transparent;
-  border: none;
-}
-
-.nav-btn-2 {
-  position: absolute;
-  left: 80px;
-  background-color: transparent;
-  border: none;
-}
-
-.nav-btn-3 {
-  position: absolute;
-  left: 140px;
-  padding: none;
-  background-color: transparent;
-  border: none;
-}
-
-.material-icons {
-  cursor: pointer;
-  background-color: #BDBDBD;
-  color: #455A64;
-  border-radius: 2px;
-  padding: none;
-}
-
-.add-btn {
-  background-color: #BDBDBD;
-  color: #455A64;
-  border-radius: 20px;
-  border: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 0 0 5px 5px;
-}
-
-#btn, .openbtn, {
+#btn, .openbtn, .trip-request-btn {
 font-size: 14px;
 cursor: pointer;
 background-color: #BDBDBD;
 color: #455A64;
-padding: 10px 15px;
+margin: 5px;
 border-radius: 2px;
 border: none;
 }
@@ -177,7 +96,7 @@ border: none;
   color: red;
 }
 
-#btn:hover, .openbtn:hover, .add-btn:hover, .material-icons:hover {
+#btn:hover, .openbtn:hover, .trip-request-btn:hover  {
   background-color: #444;
   color: #ffffff;
 }
@@ -187,12 +106,9 @@ border: none;
   padding: 20px;
 }
 
-@media screen and (max-height: 450px) {
-  .sidebar {
-    padding-top: 15px;
-  }
 
-  .sidebar a {
-    font-size: 18px;
-  }
+
+/* GENERAL ********************************************* */
+.hidden {
+  display: none;
 }

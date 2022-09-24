@@ -16,7 +16,13 @@ const pastTrips = document.querySelector('.past-destination')
 const tripStatus = document.querySelector('.trip-status')
 const cardsContainer = document.querySelector('.cards-container')
 const totalMoneySpent = document.querySelector('.total-money-spent')
+const displayInputForm = document.querySelector('.trip-request-section')
+const requestTripBtn = document.querySelector('.trip-request-btn')
 //const todaysDate
+
+
+// EVENT LISTENERS ************************************************
+requestTripBtn.addEventListener('click', displayDataForm)
 
 // GLOBAL DATA ***************************************************
 
@@ -97,6 +103,12 @@ function displayTripCards(status, travelerDestinations, trip) {
           <h4 class='trip-status'>${status}</h4>
         </article>
       `
+}
+
+function displayDataForm() {
+  displayInputForm.classList.toggle('hidden')
+  //displayDataForm.reset()
+
 }
   //this gets me to the destination
   // const destination = randomTraveler.destinations.map((place) => place.destination)

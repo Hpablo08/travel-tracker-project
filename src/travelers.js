@@ -20,9 +20,9 @@ class Traveler {
 
   calcMoneySpent() {
     //find the date
-  const todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
+  //const todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
   // filter to find past trips
-  const pastTrips = this.trips.filter((trip) => trip.date < todaysDate).map((trip) => trip.destinationID)
+  const pastTrips = this.trips.filter((trip) => trip.date > '2022/01/01').map((trip) => trip.destinationID)
 
   //now use the filter/map to get to past trips and compare that against that persons trips through destinations
 
@@ -36,8 +36,8 @@ class Traveler {
       console.log('LODGING', pastTripLodgingCost)
       acc += pastTripFlightCost + pastTripLodgingCost
       console.log('TOTAL', acc)
-      return acc
       }
+      return acc
  }, 0)
   const fee = total * .10
   console.log('fee', fee)
