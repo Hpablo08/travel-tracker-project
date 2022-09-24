@@ -116,19 +116,16 @@ function displayDataForm() {
 }
 
 
+
 function collectInputFormData() {
   const selectedDestination = destinationChoices.options[destinationChoices.selectedIndex].value
   const matchDestinationId = destinationRepository.data.find(destination => destination.destination === selectedDestination)
-  let numberArray = tripRepository.data.reduce((acc, trip) => {
-    if ()
-  }, [])
-
-  let idNumberArray = tripRepository.data.map((trip) => trip.id)
-  console.log(idNumberArray)
-  let newId = idNumberArray.length + 1
+  // let idNumberArray = tripRepository.data.map((trip) => trip.id)
+  // console.log(idNumberArray)
+  // let newId = idNumberArray.length + 1
 
   const travelerInputData = {
-    id: newId,
+    id: Date.now(),
     userID: randomTraveler.id,
     destinationID: matchDestinationId.id,
     travelers: parseInt(numOfTravelers.value),
@@ -151,7 +148,6 @@ function collectInputFormData() {
 
 function calcSingleTrip(inputData) {
   const currentDestinationID = inputData.destinationID
-
   const total = destinationRepository.data.reduce((acc, destination) => {
     if (currentDestinationID === destination.id) {
       const currentFlightCost = inputData.travelers * destination.estimatedFlightCostPerPerson
