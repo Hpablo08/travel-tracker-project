@@ -18,11 +18,14 @@ const cardsContainer = document.querySelector('.cards-container')
 const totalMoneySpent = document.querySelector('.total-money-spent')
 const displayInputForm = document.querySelector('.trip-request-section')
 const requestTripBtn = document.querySelector('.trip-request-btn')
+const bookBtn = document.querySelector('.book-trip-btn')
+const destinationChoices = document.querySelector('#mySelect')
 //const todaysDate
 
 
 // EVENT LISTENERS ************************************************
 requestTripBtn.addEventListener('click', displayDataForm)
+bookBtn.addEventListener('click', collectInputFormData)
 
 // GLOBAL DATA ***************************************************
 
@@ -63,7 +66,9 @@ function displayData() {
   displayTravelerData()
   displayDestinations()
   randomTraveler.calcMoneySpent()
-  displayDestinationsChoice()
+  displayDestinationOptions()
+//  displayDestinationsChoice()
+  //displayDropDown()
 
 }
 
@@ -112,19 +117,52 @@ function displayDataForm() {
 
 }
 
-function displayDestinationsChoice() {
-    console.log(destinationRepository.data) // an array of all destinations
-    const displayDestinations = destinationRepository.data.forEach((destination) => {
-      
+// function displayDropDown() {
+//   let destinationName = desinationRepository
+//     .getAllDestinations(desinationRepository)
+//   destinationName.forEach(destination =>
+//     inputDestOptions.innerHTML += `
+//         <option
+//           class="destination-data"
+//           value = "${destination}">${destination}
+//         </option>`
+//   )
+//   console.log(randomTraveler.id)
+// }
 
-    })
+function collectInputFormData() {
+ console.log(destinationChoices.options[destinationChoices.selectedIndex].value)
+  const selectedDestination = destinationChoices.options[destinationChoices.selectedIndex].value
+  const matchDestinationId = destinationRepository.data.find(destination => destination.destination === selectedDestination)
 
+
+const userInputData = {
+  id: Date.now(),
+  userID: randomTraveler.id,
+  destinationID: matchDestinationId.id,
+  travelers: parseInt(numOfTravelers.value),
+  date: tripDate.value.split('-').join('/'),
+  duration: parseInt(tripDuration.value),
+  status: 'pending',
+  suggestedActivities: []
 }
-  //this gets me to the destination
-  // const destination = randomTraveler.destinations.map((place) => place.destination)
-  // if (trip.date < todaysDate){
 
-  // }
+console.log(userInputData)
+}
+
+function displayDestinationOptions() {
+  const sortedDestinations = destinationRepository.data.map((destinations) => destinations.destination).sort()
+  const showDestinations =
+  sortedDestinations.forEach((destination) => {
+    var options = document.createElement("OPTION")
+    options.setAttribute("value", `${destination}`)
+    var destinations = document.createTextNode(`${destination}`)
+    options.appendChild(destinations)
+    document.getElementById("mySelect").appendChild(options)
+     })
+
+     return showDestinations
+ }
 
 
 
