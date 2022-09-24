@@ -2,7 +2,7 @@
   <html lang='en'>
 
   <head>
-
+ <title>Travel Tracker</title>
   </head>
 
   <body>
@@ -24,7 +24,7 @@
       <form class="trip-form">
         <div class="input-field">
           <label for="tripDate">Trip Starting Date:</label>
-          <input name="trip-date" class="date-form" type="date" id="tripDate" placeholder="YYYY/MM/DD" required />
+          <input name="trip-date" class="date-form" type="date" id="tripDate" min="" placeholder="YYYY/MM/DD" required />
           <span class="error-message"></span>
         </div>
         <div class="input-field">
@@ -44,12 +44,13 @@
           </select>
           <span class="error-message"></span>
         </div>
-      </form>
       <article class="trip-estimate">
         <p>Trip Estimate: $<span class="trip-estimate">ESTIMATE</span></p>
+          </article>
+        <button type="button" class="display-estimate" >Show Estimate</button>
         <button type="button" class="book-trip-btn" >Book Trip</button>
 
-      </article>
+      </form>
     </section>
           </div>
         </article>
