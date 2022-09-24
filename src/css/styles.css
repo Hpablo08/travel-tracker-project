@@ -1,3 +1,114 @@
+header {
+  width: 100%;
+  text-align: center;
+  background-color: #607D8B;
+}
+
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background-color: #9E9E9E;
+  position: relative;
+}
+
+header, body {
+  font-family: 'Roboto', sans-serif;
+  color: #ffffff;
+}
+
+.log-in {
+  padding: 5px;
+  text-align: right;
+}
+
+.client-header {
+  font-size: 25px;
+}
+
+.trip-request-section {
+  text-align: center;
+}
+/* Cards  */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr) 5fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  grid-area: 3 / 1 / 6 / 6;
+  position: relative;
+}
+
+h4, h5 {
+  margin: 10px;
+}
+
+.card {
+  contain: content;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  margin: 10px;
+  width: 140px;
+  height: 230px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: white;
+  background: linear-gradient(-45deg, #607D8B, #757575, #607D8B, #455A64);
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+  position: relative;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.card-img {
+  padding: 5px;
+  height: 90px;
+}
+
+
+#btn, .openbtn, .trip-request-btn {
+font-size: 14px;
+cursor: pointer;
+background-color: #BDBDBD;
+color: #455A64;
+margin: 5px;
+border-radius: 2px;
+border: none;
+}
+
+.fav-btn:hover {
+  color: red;
+}
+
+#btn:hover, .openbtn:hover, .trip-request-btn:hover  {
+  background-color: #444;
+  color: #ffffff;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+
+
+/* GENERAL ********************************************* */
+.hidden {
+  display: none;
 }
