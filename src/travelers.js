@@ -29,21 +29,21 @@ class Traveler {
   const total = this.destinations.reduce((acc, destination) => {
     if (pastTrips.includes(destination.id)) {
       const currentPastTrip = this.trips.find((trip) => trip.destinationID === destination.id)
-      console.log('trip', currentPastTrip)
+      //console.log('trip', currentPastTrip)
       const pastTripFlightCost = currentPastTrip.travelers * destination.estimatedFlightCostPerPerson
-      console.log('COST flight', pastTripFlightCost)
+      //console.log('COST flight', pastTripFlightCost)
       const pastTripLodgingCost = currentPastTrip.duration * destination.estimatedLodgingCostPerDay
-      console.log('LODGING', pastTripLodgingCost)
+    //  console.log('LODGING', pastTripLodgingCost)
       acc += pastTripFlightCost + pastTripLodgingCost
-      console.log('TOTAL', acc)
+    //  console.log('TOTAL', acc)
       }
       return acc
  }, 0)
   const fee = total * .10
-  console.log('fee', fee)
+  //console.log('fee', fee)
   const totalPlusFee = total + fee
   return totalPlusFee.toFixed(2)
-  console.log('total with fee', totalPlusFee)
+  //console.log('total with fee', totalPlusFee)
   // i want to use the past trips array and use it to find the destination ID
   // then use those destinations properties to calculate the total const
   // then return

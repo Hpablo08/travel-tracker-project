@@ -63,6 +63,7 @@ function displayData() {
   displayTravelerData()
   displayDestinations()
   randomTraveler.calcMoneySpent()
+  displayDestinationsChoice()
 
 }
 
@@ -110,23 +111,23 @@ function displayDataForm() {
   //displayDataForm.reset()
 
 }
+
+function displayDestinationsChoice() {
+    console.log(destinationRepository.data) // an array of all destinations
+    const displayDestinations = destinationRepository.data.forEach((destination) => {
+      
+
+    })
+
+}
   //this gets me to the destination
   // const destination = randomTraveler.destinations.map((place) => place.destination)
   // if (trip.date < todaysDate){
 
   // }
 
-//randomTraveler.trips.status === 'approved' vs pending
-// compare trip.date
 
 
-// 8/3/2018
-// let today = new Date().toLocaleDateString()
-// console.log(today)
-
-//2018-08-03
-//let today = new Date().toISOString().slice(0, 10)
-//console.log(today)
 
 
 
