@@ -19,6 +19,13 @@ class Repository {
       return acc
     }, [])
   }
-}
+
+  getAllDestinations(data){
+      return data.data
+      .map(destinations => destinations.destination)
+      .sort()
+    }
+  }
+
 
 export default Repository
