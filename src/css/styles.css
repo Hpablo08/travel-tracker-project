@@ -16,7 +16,7 @@ header, body {
 
 .client-header {
   font-size: 25px;
-  color: #284b63;
+  color: #202c39;
 }
 
 .trip-request-section {
@@ -52,7 +52,7 @@ h4, h5 {
   padding: 10px;
   border-radius: 3px;
   background-color: white;
-  background: linear-gradient(-45deg, #284b63, #2d3142, #284b63, #455A64);
+  background: linear-gradient(-45deg, #284b63, #2d3142, #284b63, #284b63);
   background-size: 400% 400%;
   animation: gradient 12s ease infinite;
   position: relative;
