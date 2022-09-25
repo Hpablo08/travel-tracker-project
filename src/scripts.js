@@ -21,14 +21,24 @@ const requestTripBtn = document.querySelector('.trip-request-btn')
 const bookBtn = document.querySelector('.book-trip-btn')
 const destinationChoices = document.querySelector('#mySelect')
 const tripForm = document.querySelector('.trip-form')
+
 const tripEstimate = document.querySelector('.trip-estimate')
 const displayEstimateBtn = document.querySelector('.display-estimate')
-//const todaysDate
+
+//const userName = document.querySelector('.userName')
+const password = document.querySelector('.password')
+const logInBtn = document.querySelector('.log-in-btn')
+const displayLogInForm = document.querySelector('.log-in-section')
+const submitLoginBtn = document.querySelector('.submit-login')
+
 
 
 // EVENT LISTENERS ************************************************
+submitLoginBtn.addEventListener('click', loginTraveler)
 requestTripBtn.addEventListener('click', displayDataForm)
-bookBtn.addEventListener('click', collectInputFormData)
+bookBtn.addEventListener('click', checkButtonPushed)
+logInBtn.addEventListener('click', displayLogIn)
+displayEstimateBtn.addEventListener('click', collectInputFormData)
 //displayEstimateBtn.addEventListener('click', calcSingleTrip)
 
 // GLOBAL DATA ***************************************************
@@ -38,32 +48,51 @@ let tripRepository
 let destinationRepository
 let randomTraveler
 let newId
+let bookButton
+
+
 
 // FETCH DATA *****************************************************
+function loginTraveler() {
+let userNameNumber = userName.value.slice(8)
+    Promise.all([fetchData(`travelers/${userNameNumber}`), fetchData("trips"), fetchData("destinations")])
+      .then(data => {
+        setData(data)
+      })
+}
 
-Promise.all([fetchData("travelers"), fetchData("trips"), fetchData("destinations")])
-  .then((data) => {
-    setData(data);
-    console.log('promise', data[0])
-  });
+function checkUsername(){
+
+}
+
+function checkPassword() {
+
+}
+//
+// Promise.all([fetchData("travelers"), fetchData("trips"), fetchData("destinations")])
+//   .then((data) => {
+//     setData(data);
+//     console.log('promise', data[0])
+//   });
 
 
 function setData(data) {
-  currentTraveler = new Repository(data[0].travelers)
+  randomTraveler = new Traveler(data[0])
   tripRepository = new Repository(data[1].trips)
   destinationRepository = new Repository(data[2].destinations)
-  randomTraveler = getRandomTraveler(currentTraveler.data)
+
+  //randomTraveler = getRandomTraveler(currentTraveler.data)
   randomTraveler.setTravelerData(tripRepository, 'trips', 'userID')
   randomTraveler.setTravelerDestinations(destinationRepository)
   console.log('random', randomTraveler)
   displayData()
 }
 
-function getRandomTraveler(users) {
-  const randomIndex = Math.floor(Math.random() * users.length)
-  const randomTravelerData = currentTraveler.findTraveler(randomIndex, 'id')
-  return new Traveler(randomTravelerData[0])
-}
+// function getRandomTraveler(users) {
+//   const randomIndex = Math.floor(Math.random() * users.length)
+//   const randomTravelerData = currentTraveler.findTraveler(randomIndex, 'id')
+//   return new Traveler(randomTravelerData[0])
+// }
 
 function displayData() {
   displayTravelerData()
@@ -92,7 +121,6 @@ function displayDestinations() {
   })
 }
 
-
 function createTripCards(status, travelerDestinations, trip) {
   //  cardsContainer.innerHTML = ""
   cardsContainer.innerHTML += ` <article class='card'>
@@ -111,18 +139,21 @@ function displayDataForm() {
   console.log(todaysInputDate)
   const tripDate = document.getElementById("tripDate").min = `${todaysInputDate}`
   tripForm.reset()
-
 }
 
+function checkButtonPushed() {
+  console.log('it was clicked')
+  let bookButton = true
+  collectInputFormData(bookButton)
+}
 
-
-function collectInputFormData() {
+function collectInputFormData(bookButton) {
   const selectedDestination = destinationChoices.options[destinationChoices.selectedIndex].value
   const matchDestinationId = destinationRepository.data.find(destination => destination.destination === selectedDestination)
   let idNumberArray = tripRepository.data.map((trip) => trip.id)
   let newId = idNumberArray.length + 1
 
-  const travelerInputData = {
+  let travelerInputData = {
     id: newId,
     userID: randomTraveler.id,
     destinationID: matchDestinationId.id,
@@ -132,37 +163,32 @@ function collectInputFormData() {
     status: 'pending',
     suggestedActivities: []
   }
-    tripRepository.data.push(travelerInputData)
-    console.log(travelerInputData)
+  if (bookButton === true){
     postData('trips', travelerInputData)
     createTripCards('Pending Trip', matchDestinationId, travelerInputData)
+    tripRepository.data.push(travelerInputData)
     calcSingleTrip(travelerInputData)
-
-    //getFetch()
-    //tripForm.reset()
-
+  }
+  else {
+    calcSingleTrip(travelerInputData)
+  }
 }
-
-
 
 function calcSingleTrip(inputData) {
   const currentDestinationID = inputData.destinationID
   const total = destinationRepository.data.reduce((acc, destination) => {
     if (currentDestinationID === destination.id) {
       const currentFlightCost = inputData.travelers * destination.estimatedFlightCostPerPerson
-      console.log(currentFlightCost)
       const currentLodgingCost = inputData.duration * destination.estimatedLodgingCostPerDay
-      console.log(currentLodgingCost)
       acc += currentFlightCost + currentLodgingCost
     }
-    console.log(acc)
     return acc
   }, 0)
   const fee = total * .10
   const totalPlusFee = total + fee
-  console.log(totalPlusFee)
   const estimate = totalPlusFee.toFixed(2)
-  return tripEstimate.innerText = `${estimate}`
+  let bookButton = false
+  return tripEstimate.innerHTML = `<h2>Your estimate is: ${estimate} </h2>`
 }
 
 function displayDestinationOptions() {
@@ -176,4 +202,18 @@ function displayDestinationOptions() {
       document.getElementById("mySelect").appendChild(options)
     })
   return showDestinations
+}
+
+// function displayBookedTrip() {
+//   collectInputFormData()
+//   postData('trips', travelerInputData)
+//   createTripCards('Pending Trip', matchDestinationId, travelerInputData)
+// }
+
+function displayLogIn() {
+  displayLogInForm.classList.toggle('hidden')
+}
+
+function displayEstimate() {
+  collectInputFormData()
 }

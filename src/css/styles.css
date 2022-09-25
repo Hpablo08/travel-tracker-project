@@ -13,9 +13,9 @@ header, body {
   font-family: 'Roboto', sans-serif;
   color: #ffffff;
 }
-/* .display-name{
+.display-name{
   color: #ef8354;
-} */
+}
 .client-header {
   font-size: 25px;
   color: #202c39;
@@ -80,7 +80,7 @@ h4, h5 {
 
 }
 
- .log-in-btn, .display-estimate, .book-trip-btn, .trip-request-btn {
+ .submit-login, .log-in-btn, .display-estimate, .book-trip-btn, .trip-request-btn {
 font-size: 14px;
 cursor: pointer;
 background-color: #ffffff;
@@ -91,7 +91,7 @@ border-radius: 2px;
 border: none;
 }
 
- .log-in-btn:hover, .display-estimate:hover, .book-trip-btn:hover, .trip-request-btn:hover  {
+ .submit-login:hover, .log-in-btn:hover, .display-estimate:hover, .book-trip-btn:hover, .trip-request-btn:hover  {
   background-color: #ef8354;
   color: #ffffff;
 }
