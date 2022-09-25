@@ -100,7 +100,7 @@ function createTripCards(status, travelerDestinations, trip) {
         <img class="card-img" src="${travelerDestinations.image}" alt="${travelerDestinations.alt}">
         <section class='card-description'>
           <h4 class='destination-name'>${travelerDestinations.destination}</h4>
-          <p>${trip.date}</p>
+          <h4>${trip.date}</h4>
           <h4 class='trip-status'>${status}</h4>
         </article>
       `
@@ -120,12 +120,12 @@ function displayDataForm() {
 function collectInputFormData() {
   const selectedDestination = destinationChoices.options[destinationChoices.selectedIndex].value
   const matchDestinationId = destinationRepository.data.find(destination => destination.destination === selectedDestination)
-  // let idNumberArray = tripRepository.data.map((trip) => trip.id)
-  // console.log(idNumberArray)
-  // let newId = idNumberArray.length + 1
+  let idNumberArray = tripRepository.data.map((trip) => trip.id)
+  console.log(idNumberArray)
+  let newId = idNumberArray.length + 1
 
   const travelerInputData = {
-    id: Date.now(),
+    id: newId,
     userID: randomTraveler.id,
     destinationID: matchDestinationId.id,
     travelers: parseInt(numOfTravelers.value),
@@ -134,6 +134,7 @@ function collectInputFormData() {
     status: 'pending',
     suggestedActivities: []
   }
+    tripRepository.data.push(travelerInputData)
     console.log(travelerInputData)
     postData('trips', travelerInputData)
     createTripCards('Pending Trip', matchDestinationId, travelerInputData)
