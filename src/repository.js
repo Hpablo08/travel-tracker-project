@@ -22,8 +22,7 @@ class Repository {
 
   getAllDestinations(data){
       return data.data
-      .map(destinations => destinations.destination)
-      .sort()
+      .map(destinations => destinations.destination).sort()
     }
   }
 

@@ -27,7 +27,6 @@ const displayEstimateBtn = document.querySelector('.display-estimate')
 
 
 // EVENT LISTENERS ************************************************
-//window.addEventListener('load', getFetch)
 requestTripBtn.addEventListener('click', displayDataForm)
 bookBtn.addEventListener('click', collectInputFormData)
 //displayEstimateBtn.addEventListener('click', calcSingleTrip)
@@ -61,9 +60,9 @@ function setData(data) {
 }
 
 function getRandomTraveler(users) {
-  const randomIndex = Math.floor(Math.random() * users.length);
+  const randomIndex = Math.floor(Math.random() * users.length)
   const randomTravelerData = currentTraveler.findTraveler(randomIndex, 'id')
-  return new Traveler(randomTravelerData[0]);
+  return new Traveler(randomTravelerData[0])
 }
 
 function displayData() {
@@ -121,7 +120,6 @@ function collectInputFormData() {
   const selectedDestination = destinationChoices.options[destinationChoices.selectedIndex].value
   const matchDestinationId = destinationRepository.data.find(destination => destination.destination === selectedDestination)
   let idNumberArray = tripRepository.data.map((trip) => trip.id)
-  console.log(idNumberArray)
   let newId = idNumberArray.length + 1
 
   const travelerInputData = {
@@ -171,7 +169,7 @@ function calcSingleTrip(inputData) {
 }
 
 function displayDestinationOptions() {
-  const sortedDestinations = destinationRepository.data.map((destinations) => destinations.destination).sort()
+  const sortedDestinations = destinationRepository.getAllDestinations(destinationRepository)
   const showDestinations =
     sortedDestinations.forEach((destination) => {
       var options = document.createElement("OPTION")
