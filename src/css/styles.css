@@ -14,6 +14,11 @@ header, body {
   color: #ffffff;
 }
 
+.logo-main {
+  width: 200px;
+  margin:20px;
+  position:
+}
 .display-name{
   color: #ef8354;
 }
@@ -50,7 +55,7 @@ h4, h5 {
   flex-direction: column;
   font-size: 14px;
   margin: 10px;
-  width: 140px;
+  width: 150px;
   height: 230px;
   padding: 10px;
   border-radius: 3px;
@@ -107,6 +112,10 @@ border: none;
 }
 
 /* Pop-up ********************************************* */
+.logo {
+  width: 150px;
+}
+
 .log-in-container {
   background-color: #284b63;
   width: 300px;
