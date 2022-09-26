@@ -99,7 +99,7 @@ function createTripCards(status, travelerDestinations, trip) {
   cardsContainer.innerHTML += ` <article class='card'>
         <img class="card-img" src="${travelerDestinations.image}" alt="${travelerDestinations.alt}">
         <section class='card-description'>
-          <h4 class='destination-name'>${travelerDestinations.destination}</h4>
+          <h3 class='destination-name'>${travelerDestinations.destination}</h3>
           <h4>${trip.date}</h4>
           <h4 class='trip-status'>${status}</h4>
         </article>
