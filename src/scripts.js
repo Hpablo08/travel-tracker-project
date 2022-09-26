@@ -7,7 +7,11 @@ import Repository from './repository';
 import Traveler from './travelers';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import './images/success.png'
 import './images/turing-logo.png'
+
+
+
 // DOM ELEMENTS ***************************************************
 const travelerName = document.querySelector('.display-name')
 const destinations = document.querySelector('.destination-name')
@@ -21,15 +25,27 @@ const requestTripBtn = document.querySelector('.trip-request-btn')
 const bookBtn = document.querySelector('.book-trip-btn')
 const destinationChoices = document.querySelector('#mySelect')
 const tripForm = document.querySelector('.trip-form')
+
 const tripEstimate = document.querySelector('.trip-estimate')
 const displayEstimateBtn = document.querySelector('.display-estimate')
-//const todaysDate
 
+const userName = document.querySelector('#userName')
+const password = document.querySelector('#password')
+const logInBtn = document.querySelector('.log-in-btn')
+const displayLogInForm = document.querySelector('.log-in-section')
+const submitLoginBtn = document.querySelector('.submit-login')
+const loginContainer = document.querySelector('.log-in-container')
+const errorUsername = document.querySelector('.error-message-username')
+
+const tripCardsSection = document.querySelector('.client-header')
+const headerSection = document.querySelector('.top-nav')
 
 // EVENT LISTENERS ************************************************
+submitLoginBtn.addEventListener('click', checkLoginData)
 requestTripBtn.addEventListener('click', displayDataForm)
-bookBtn.addEventListener('click', collectInputFormData)
-//displayEstimateBtn.addEventListener('click', calcSingleTrip)
+bookBtn.addEventListener('click', checkButtonPushed)
+displayEstimateBtn.addEventListener('click', collectInputFormData)
+//userName.addEventListener('input', checkLoginData)
 
 // GLOBAL DATA ***************************************************
 
@@ -38,31 +54,55 @@ let tripRepository
 let destinationRepository
 let randomTraveler
 let newId
+let bookButton
 
 // FETCH DATA *****************************************************
+function loginTraveler() {
+  tripCardsSection.classList.remove('hidden')
+  headerSection.classList.remove('hidden')
+  loginContainer.classList.add('hidden')
+  let userNameNumber = userName.value.slice(8)
+  Promise.all([fetchData(`travelers/${userNameNumber}`), fetchData("trips"), fetchData("destinations")])
+    .then(data => {
+      setData(data)
+    })
+}
 
-Promise.all([fetchData("travelers"), fetchData("trips"), fetchData("destinations")])
-  .then((data) => {
-    setData(data);
-    console.log('promise', data[0])
-  });
+function checkLoginData() {
+  if (userName.value === "" || password.value === "") {
+    errorUsername.innerText = `PLEASE SUBMIT BOTH USERNAME AND PASSWORD!`
+  } else if (password.value !== "travel") {
+    errorUsername.innerText = `INCORRECT PASSWORD!`
+  } else if (!userName.value.includes("traveler")) {
+    errorUsername.innerText = `USERNAME DOES NOT EXIST! PLEASE TRY AGAIN.`
+  } else {
+    errorUsername.innerText = ''
+    loginTraveler()
+  }
+}
+
+
+// if (userName.validity.tooShort || userName.validity.valueMissing) {
+//    userName.setCustomValidity("Username must be 10 characters.")
+//    userName.reportValidity()
+// }
+
+//
+// Promise.all([fetchData("travelers"), fetchData("trips"), fetchData("destinations")])
+//   .then((data) => {
+//     setData(data);
+//     console.log('promise', data[0])
+//   });
 
 
 function setData(data) {
-  currentTraveler = new Repository(data[0].travelers)
+  randomTraveler = new Traveler(data[0])
   tripRepository = new Repository(data[1].trips)
   destinationRepository = new Repository(data[2].destinations)
-  randomTraveler = getRandomTraveler(currentTraveler.data)
   randomTraveler.setTravelerData(tripRepository, 'trips', 'userID')
   randomTraveler.setTravelerDestinations(destinationRepository)
   console.log('random', randomTraveler)
   displayData()
-}
-
-function getRandomTraveler(users) {
-  const randomIndex = Math.floor(Math.random() * users.length)
-  const randomTravelerData = currentTraveler.findTraveler(randomIndex, 'id')
-  return new Traveler(randomTravelerData[0])
 }
 
 function displayData() {
@@ -92,9 +132,7 @@ function displayDestinations() {
   })
 }
 
-
 function createTripCards(status, travelerDestinations, trip) {
-  //  cardsContainer.innerHTML = ""
   cardsContainer.innerHTML += ` <article class='card'>
         <img class="card-img" src="${travelerDestinations.image}" alt="${travelerDestinations.alt}">
         <section class='card-description'>
@@ -108,21 +146,23 @@ function createTripCards(status, travelerDestinations, trip) {
 function displayDataForm() {
   displayInputForm.classList.toggle('hidden')
   const todaysInputDate = new Date().toISOString().slice(0, 10)
-  console.log(todaysInputDate)
   const tripDate = document.getElementById("tripDate").min = `${todaysInputDate}`
   tripForm.reset()
 
 }
 
+function checkButtonPushed() {
+  let bookButton = true
+  collectInputFormData(bookButton)
+}
 
-
-function collectInputFormData() {
+function collectInputFormData(bookButton) {
   const selectedDestination = destinationChoices.options[destinationChoices.selectedIndex].value
   const matchDestinationId = destinationRepository.data.find(destination => destination.destination === selectedDestination)
   let idNumberArray = tripRepository.data.map((trip) => trip.id)
   let newId = idNumberArray.length + 1
 
-  const travelerInputData = {
+  let travelerInputData = {
     id: newId,
     userID: randomTraveler.id,
     destinationID: matchDestinationId.id,
@@ -132,37 +172,34 @@ function collectInputFormData() {
     status: 'pending',
     suggestedActivities: []
   }
-    tripRepository.data.push(travelerInputData)
-    console.log(travelerInputData)
+  if (bookButton === true) {
     postData('trips', travelerInputData)
     createTripCards('Pending Trip', matchDestinationId, travelerInputData)
+    tripRepository.data.push(travelerInputData)
+    //calcSingleTrip(travelerInputData)
+    tripForm.reset()
+    displayInputForm.classList.toggle('hidden')
+    tripEstimate.innerHTML = ''
+  } else {
     calcSingleTrip(travelerInputData)
-
-    //getFetch()
-    //tripForm.reset()
-
+  }
 }
-
-
 
 function calcSingleTrip(inputData) {
   const currentDestinationID = inputData.destinationID
   const total = destinationRepository.data.reduce((acc, destination) => {
     if (currentDestinationID === destination.id) {
       const currentFlightCost = inputData.travelers * destination.estimatedFlightCostPerPerson
-      console.log(currentFlightCost)
       const currentLodgingCost = inputData.duration * destination.estimatedLodgingCostPerDay
-      console.log(currentLodgingCost)
       acc += currentFlightCost + currentLodgingCost
     }
-    console.log(acc)
     return acc
   }, 0)
   const fee = total * .10
   const totalPlusFee = total + fee
-  console.log(totalPlusFee)
   const estimate = totalPlusFee.toFixed(2)
-  return tripEstimate.innerText = `${estimate}`
+  let bookButton = false
+  return tripEstimate.innerHTML = `<h2>Your estimate is: ${estimate} </h2>`
 }
 
 function displayDestinationOptions() {
