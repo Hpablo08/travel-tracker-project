@@ -1,83 +1,85 @@
 <!DOCTYPEhtml>
-<html lang='en'>
+  <html lang='en'>
+  <head>
 
-<head>
-  <title>Travel Tracker</title>
-</head>
+    <title>Travel Tracker</title>
+    <link href="./images/success.png" rel="icon">
 
-<body>
-  <header>
-
-    <div class='top-nav'>
-      <img class="" src="" alt="">
-      <h1>Travel Tracker</h1>
-      <h2>Hello, <span class='display-name'></span> lets book a trip!</h2>
-      <p class='display-todays-date'> </p>
-      <h2> Total Spent This Year: <span class='total-money-spent'></span></h2>
-      <article class='main-buttons'>
-        <button class='log-in-btn'>Login Here</button>
-        <button class='trip-request-btn'>Request Trip</button>
-        <div class="log-in-container">
-          <section class="log-in-section hidden">
-            <h2>Please Login</h2>
-            <div class="input-field">
+  </head>
+  <body>
+    <header>
+      <div class="log-in-container">
+        <p>
+        <section class="log-in-section">
+          <h2>Please Login</h2>
+          <div class="input-field">
             <label for="userName">Username</label>
-            <input type="text" id="userName" placeholder="Enter Username" name="userName" max='10' required>
-          </div>
+            <input type="text" id="userName" placeholder="Enter Username" name="userName" maxlength='10' required>
+         </div>
           <div class="input-field">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter Password" name="password" max='6' required>
+            <input type="password" id="password" placeholder="Enter Password" name="password" maxlength='6' required>
+          <button class="submit-login" type="submit-login">Login</button>
+          <div>
+          <span class="error-message-username"></span>
+        </div>
+        </section>
+        </p>
+      </div>
+      <div class='top-nav hidden'>        
+        <h1>&#9992;Travel Tracker</h1>
+        <h2>Hello, <span class='display-name'></span> lets book a trip!</h2>
+        <p class='display-todays-date'> </p>
+        <h2> Total Spent This Year: <span class='total-money-spent'></span></h2>
+        <article class='main-buttons'>
+          <button class='trip-request-btn'>Request Trip</button>
+          <div id="main">
+            <div id="submit-image">
+              <img class="wait-image hidden" src='./images/success.png' alt="success your trip has been submitted image">
+            </div>
+            <section class="trip-request-section hidden">
+              <h2>Plan a Trip!</h2>
+              <form class="trip-form">
+                <div class="input-field">
+                  <label for="tripDate">Trip Starting Date:</label>
+                  <input name="trip-date" class="date-form" type="date" id="tripDate" min="" placeholder="YYYY/MM/DD" required />
+
+                </div>
+                <div class="input-field">
+                  <label for="tripDuration">Trip Duration (days):</label>
+                  <input name="trip-duration" id="tripDuration" placeholder="1" type="number" min="1" required />
+
+                </div>
+                <div class="input-field">
+                  <label for="numberOfTravelers">Number of Travelers:</label>
+                  <input name="num-of-travelers" id="numOfTravelers" placeholder="1" type="number" min="1" required />
+
+                </div>
+                <div class="input-field">
+                  <label for="destinationChoices">Destination:</label>
+                  <select name="destination-choices" id="mySelect" required>
+                    <option value="">Select</option>
+                  </select>
+
+                </div>
+                <article class="trip-estimate">
+                  <p>Trip Estimate: $<span class="trip-estimate">ESTIMATE</span></p>
+                </article>
+                <button type="button" class="display-estimate">Show Estimate</button>
+                <button type="button" class="book-trip-btn">Request Trip</button>
+              </form>
+            </section>
           </div>
-            <button class="submit-login" type="submit-login">Login</button>
-          </section>
-        </div>
-        <div id="main">
-          <section class="trip-request-section hidden">
-            <h2>Plan a Trip!</h2>
-            <form class="trip-form">
-              <div class="input-field">
-                <label for="tripDate">Trip Starting Date:</label>
-                <input name="trip-date" class="date-form" type="date" id="tripDate" min="" placeholder="YYYY/MM/DD" required />
-                <span class="error-message"></span>
-              </div>
-              <div class="input-field">
-                <label for="tripDuration">Trip Duration (days):</label>
-                <input name="trip-duration" id="tripDuration" placeholder="1" type="number" min="1" required />
-                <span class="error-message"></span>
-              </div>
-              <div class="input-field">
-                <label for="numberOfTravelers">Number of Travelers:</label>
-                <input name="num-of-travelers" id="numOfTravelers" placeholder="1" type="number" min="1" required />
-                <span class="error-message"></span>
-              </div>
-              <div class="input-field">
-                <label for="destinationChoices">Destination:</label>
-                <select name="destination-choices" id="mySelect" required>
-                  <option value="">Select</option>
-                </select>
-                <span class="error-message"></span>
-              </div>
-              <article class="trip-estimate">
-                <p>Trip Estimate: $<span class="trip-estimate">ESTIMATE</span></p>
-              </article>
-              <button type="button" class="display-estimate">Show Estimate</button>
-              <button type="button" class="book-trip-btn">Request Trip</button>
-            </form>
-          </section>
-        </div>
-      </article>
-      <article class='log-in'>
+        </article>
+        <article class='log-in'>
+      </div>
+    </header>
+    <div class='header-for-clients'>
+      <h2 class='client-header hidden'>Your Trips</h2>
     </div>
-  </header>
+    <section class='cards-container'>
+    </section>
+    <script src="bundle.js"></script>
+  </body>
 
-  <div class='header-for-clients'>
-    <p class='client-header'>Active Applications</p>
-  </div>
-  <section class='cards-container'>
-
-  </section>
-  <script src="bundle.js"></script>
-</body>
-
-</html>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  </html>
