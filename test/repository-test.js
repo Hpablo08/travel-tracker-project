@@ -33,10 +33,15 @@ describe('Repository', function() {
 
     })
 
-    it.skip('should be able to find destinations', () => {
-    let dest = destinationRepo.findDestinations(tripRepo)
-    console.log(dest)
-    })
+    it('should be able to find destinations', () => {
+    traveler1 = travelerRepo.findDestinations(tripsData)
+
+  expect(travelerRepo.findDestinations(tripsData)).to.deep.equal([{
+    id: 2,
+    name: "Rachael Vaughten",
+    travelerType: "thrill-seeker"
+    }])
+  });
 
     it('should be able to get all destination and sort alphabetically', () => {
     let allDestinations =  destinationRepo.getAllDestinations(destinationRepo)

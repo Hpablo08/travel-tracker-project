@@ -39,7 +39,7 @@ requestTripBtn.addEventListener('click', displayDataForm)
 bookBtn.addEventListener('click', checkButtonPushed)
 logInBtn.addEventListener('click', displayLogIn)
 displayEstimateBtn.addEventListener('click', collectInputFormData)
-//displayEstimateBtn.addEventListener('click', calcSingleTrip)
+
 
 // GLOBAL DATA ***************************************************
 
@@ -61,13 +61,16 @@ let userNameNumber = userName.value.slice(8)
       })
 }
 
-function checkUsername(){
+// function checkLoginData() {
+//   userNameInput = userName.value
+//   if (userNameInput.includes('traveler') && password.value === 'travel'){
+//     loginTraveler()
+//   } else {
+//     alert('Your username or password is incorrect')
+//   }
+// }
 
-}
 
-function checkPassword() {
-
-}
 //
 // Promise.all([fetchData("travelers"), fetchData("trips"), fetchData("destinations")])
 //   .then((data) => {
