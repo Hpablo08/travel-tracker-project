@@ -32,11 +32,11 @@ This project is part of Turing Software and Designs' Front-End Program, Module 2
 
 ## Screenshots
 <p align="center">Example Login</br>
-  <img width="460" height="300" src="./images/Login.png" alt="Screenshot of login screen">
+  <img width="460" height="300" src="/images/Login.png" alt="Screenshot of login screen">
 </p>
 <br/>
 <p align="center">Example DashBoard</br>
-  <img width="460" height="300" src="./images/Dashboard.png" alt="Screenshot of dashboard">
+  <img width="460" height="300" src="/images/Dashboard.png" alt="Screenshot of dashboard">
 </p>
 <br/>
 <p align="center">
