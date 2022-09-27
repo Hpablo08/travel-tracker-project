@@ -1,3 +1,4 @@
+// DEPENDENCIES **************************************************
 import {
   fetchData,
   postData
@@ -5,10 +6,9 @@ import {
 import './css/styles.css';
 import Repository from './repository';
 import Traveler from './travelers';
+import './images/logo.png';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/success.png'
-import './images/turing-logo.png'
+
 
 
 
@@ -25,10 +25,8 @@ const requestTripBtn = document.querySelector('.trip-request-btn')
 const bookBtn = document.querySelector('.book-trip-btn')
 const destinationChoices = document.querySelector('#mySelect')
 const tripForm = document.querySelector('.trip-form')
-
 const tripEstimate = document.querySelector('.trip-estimate')
 const displayEstimateBtn = document.querySelector('.display-estimate')
-
 const userName = document.querySelector('#userName')
 const password = document.querySelector('#password')
 const logInBtn = document.querySelector('.log-in-btn')
@@ -36,19 +34,17 @@ const displayLogInForm = document.querySelector('.log-in-section')
 const submitLoginBtn = document.querySelector('.submit-login')
 const loginContainer = document.querySelector('.log-in-container')
 const errorUsername = document.querySelector('.error-message-username')
-
 const tripCardsSection = document.querySelector('.client-header')
 const headerSection = document.querySelector('.top-nav')
 
 // EVENT LISTENERS ************************************************
 submitLoginBtn.addEventListener('click', checkLoginData)
 requestTripBtn.addEventListener('click', displayDataForm)
-bookBtn.addEventListener('click', checkButtonPushed)
+bookBtn.addEventListener('click', checkInputForm)
 displayEstimateBtn.addEventListener('click', collectInputFormData)
-//userName.addEventListener('input', checkLoginData)
+
 
 // GLOBAL DATA ***************************************************
-
 let currentTraveler
 let tripRepository
 let destinationRepository
@@ -56,44 +52,33 @@ let randomTraveler
 let newId
 let bookButton
 
-// FETCH DATA *****************************************************
-function loginTraveler() {
-  tripCardsSection.classList.remove('hidden')
-  headerSection.classList.remove('hidden')
-  loginContainer.classList.add('hidden')
-  let userNameNumber = userName.value.slice(8)
-  Promise.all([fetchData(`travelers/${userNameNumber}`), fetchData("trips"), fetchData("destinations")])
-    .then(data => {
-      setData(data)
-    })
-}
+// FUNCTIONS *****************************************************
 
 function checkLoginData() {
+  let userNameNumber = userName.value.slice(8)
   if (userName.value === "" || password.value === "") {
     errorUsername.innerText = `PLEASE SUBMIT BOTH USERNAME AND PASSWORD!`
   } else if (password.value !== "travel") {
     errorUsername.innerText = `INCORRECT PASSWORD!`
   } else if (!userName.value.includes("traveler")) {
     errorUsername.innerText = `USERNAME DOES NOT EXIST! PLEASE TRY AGAIN.`
+  } else if (parseInt(userNameNumber) > 50 ) {
+    errorUsername.innerText = `THE USERNAME DOES NOT EXIST`
   } else {
     errorUsername.innerText = ''
-    loginTraveler()
+    loginTraveler(userNameNumber)
   }
 }
 
-
-// if (userName.validity.tooShort || userName.validity.valueMissing) {
-//    userName.setCustomValidity("Username must be 10 characters.")
-//    userName.reportValidity()
-// }
-
-//
-// Promise.all([fetchData("travelers"), fetchData("trips"), fetchData("destinations")])
-//   .then((data) => {
-//     setData(data);
-//     console.log('promise', data[0])
-//   });
-
+function loginTraveler(userNameNumber) {
+  tripCardsSection.classList.remove('hidden')
+  headerSection.classList.remove('hidden')
+  loginContainer.classList.add('hidden')
+  Promise.all([fetchData(`travelers/${userNameNumber}`), fetchData("trips"), fetchData("destinations")])
+  .then(data => {
+    setData(data)
+  })
+}
 
 function setData(data) {
   randomTraveler = new Traveler(data[0])
@@ -101,7 +86,7 @@ function setData(data) {
   destinationRepository = new Repository(data[2].destinations)
   randomTraveler.setTravelerData(tripRepository, 'trips', 'userID')
   randomTraveler.setTravelerDestinations(destinationRepository)
-  console.log('random', randomTraveler)
+  // console.log('random', randomTraveler)
   displayData()
 }
 
@@ -119,7 +104,6 @@ function displayTravelerData() {
 
 function displayDestinations() {
   const todaysDate = new Date().toISOString().slice(0, 10).split('-').join('/')
-
   randomTraveler.trips.forEach(trip => {
     const travelerDestinations = randomTraveler.destinations.find(destination => trip.destinationID === destination.id)
     if (trip.status === 'pending') {
@@ -136,9 +120,9 @@ function createTripCards(status, travelerDestinations, trip) {
   cardsContainer.innerHTML += ` <article class='card'>
         <img class="card-img" src="${travelerDestinations.image}" alt="${travelerDestinations.alt}">
         <section class='card-description'>
-          <h3 class='destination-name'>${travelerDestinations.destination}</h4>
-          <h4>${trip.date}</h4>
-          <h4 class='trip-status'>${status}</h4>
+          <h4 class='destination-name'>${travelerDestinations.destination}</h4>
+          <h5>${trip.date}</h5>
+          <h5 class='trip-status'>${status}</h5>
         </article>
       `
 }
@@ -151,9 +135,30 @@ function displayDataForm() {
 
 }
 
-function checkButtonPushed() {
-  let bookButton = true
-  collectInputFormData(bookButton)
+function displayDestinationOptions() {
+  const sortedDestinations = destinationRepository.getAllDestinations(destinationRepository)
+  const showDestinations =
+  sortedDestinations.forEach((destination) => {
+    var options = document.createElement("OPTION")
+    options.setAttribute("value", `${destination}`)
+    var destinations = document.createTextNode(`${destination}`)
+    options.appendChild(destinations)
+    document.getElementById("mySelect").appendChild(options)
+  })
+  return showDestinations
+}
+
+function checkInputForm() {
+  if (destinationChoices.options[destinationChoices.selectedIndex].text &&
+    tripDuration.value &&
+    tripDate.value &&
+    numOfTravelers.value) {
+    let bookButton = true
+    collectInputFormData(bookButton)
+  } else {
+    tripEstimate.innerHTML = 'Please fill out all sections'
+    tripForm.reset()
+  }
 }
 
 function collectInputFormData(bookButton) {
@@ -176,7 +181,6 @@ function collectInputFormData(bookButton) {
     postData('trips', travelerInputData)
     createTripCards('Pending Trip', matchDestinationId, travelerInputData)
     tripRepository.data.push(travelerInputData)
-    //calcSingleTrip(travelerInputData)
     tripForm.reset()
     displayInputForm.classList.toggle('hidden')
     tripEstimate.innerHTML = ''
@@ -200,17 +204,4 @@ function calcSingleTrip(inputData) {
   const estimate = totalPlusFee.toFixed(2)
   let bookButton = false
   return tripEstimate.innerHTML = `<h2>Your estimate is: ${estimate} </h2>`
-}
-
-function displayDestinationOptions() {
-  const sortedDestinations = destinationRepository.getAllDestinations(destinationRepository)
-  const showDestinations =
-    sortedDestinations.forEach((destination) => {
-      var options = document.createElement("OPTION")
-      options.setAttribute("value", `${destination}`)
-      var destinations = document.createTextNode(`${destination}`)
-      options.appendChild(destinations)
-      document.getElementById("mySelect").appendChild(options)
-    })
-  return showDestinations
 }
