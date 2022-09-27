@@ -4,8 +4,7 @@ function fetchData(repo) {
       .then(response => {
         if (!response.ok) {
           throw new Error('Not a 200 status');
-        }
-        console.log('you are getting the data')
+        }        
         return response.json();
       })
       .catch(error => {
