@@ -1,46 +1,53 @@
-# Webpack Starter Kit
+# Tic-Tac-Toe
 
-## Clone This Repo
+## Table of Contents
+- [Overview](#Overview)
+- [Setup](#Setup)
+- [ScreenShots](#ScreenShots)
+- [Features](#Features)
+- [Links](#Links)
+- [Contributors](#Contributors)
+- [Technologies](#Technologies)
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+## Overview
+This application is a chance for students to build a Tic-Tac-Toe app that allow users to play a game of tic-tac-toe. This Solo Challenge gave us a chance to show where we are with the foundational concepts of the Mod 1 curriculum. In this challenge, we utilized HTML, CSS, and JavaScript to create a functional app that will use game logic to play a game. I used the data model to display and update the DOM.
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
 
 ## Setup
+- Clone the repository to your local machine
+- `cd` into the project
+- Run `npm install` to install project dependencies
+- Run `npm start` to launch the live server
+- Copy and paste the provided localhost URL into your browser
+- Explore and enjoy!
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+## Screenshots
+<p align="center">Example Screenshot</br>
+  <img width="460" height="300" src="assets/game.png" alt="Screenshot of project">
+</p>
 
-Then install the library dependencies. Run:
+<p align="center">Functionality</br>
+  <img width="460" height="300" src="assets/DesktopViewTour.gif" alt="Gif of application performing various functional actions">
+</p><p align="center"><img width="500" src="assets/example.gif" alt="Additional gif of application performing various functional actions">
+</p>
 
-```bash
-npm install
-```
+## Features
+- The game keeps tracks of the score and stores the data in local localStorage
+- The game displays which player turn it is, if they are winner, and if the game is a draw
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
 
-## Where to Add Your Code
+## Links
+- The spec for this project can be found [here](https://frontend.turing.edu/projects/module-1/tic-tac-toe-solo-v2.html).
 
-### JavaScript
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+## Contributors
+- [Hazel Pablo](https://github.com/Hpablo08?tab=repositories)
 
-**Create all of your feature code files in the `src` directory.**
-
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
-
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
-
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
-### Images
+## Technologies
+  - Javascript
+  - HTML
+  - CSS
 
 Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
 

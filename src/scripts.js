@@ -6,9 +6,8 @@ import {
 import './css/styles.css';
 import Repository from './repository';
 import Traveler from './travelers';
-import './images/success.png'
-import './images/logo.png'
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import './images/logo.png';
+
 
 
 
@@ -43,10 +42,9 @@ submitLoginBtn.addEventListener('click', checkLoginData)
 requestTripBtn.addEventListener('click', displayDataForm)
 bookBtn.addEventListener('click', checkInputForm)
 displayEstimateBtn.addEventListener('click', collectInputFormData)
-//tripForm.addEventListener('input', checkLoginData)
+
 
 // GLOBAL DATA ***************************************************
-
 let currentTraveler
 let tripRepository
 let destinationRepository
@@ -57,23 +55,25 @@ let bookButton
 // FUNCTIONS *****************************************************
 
 function checkLoginData() {
+  let userNameNumber = userName.value.slice(8)
   if (userName.value === "" || password.value === "") {
     errorUsername.innerText = `PLEASE SUBMIT BOTH USERNAME AND PASSWORD!`
   } else if (password.value !== "travel") {
     errorUsername.innerText = `INCORRECT PASSWORD!`
   } else if (!userName.value.includes("traveler")) {
     errorUsername.innerText = `USERNAME DOES NOT EXIST! PLEASE TRY AGAIN.`
+  } else if (parseInt(userNameNumber) > 50 ) {
+    errorUsername.innerText = `THE USERNAME DOES NOT EXIST`
   } else {
     errorUsername.innerText = ''
-    loginTraveler()
+    loginTraveler(userNameNumber)
   }
 }
 
-function loginTraveler() {
+function loginTraveler(userNameNumber) {
   tripCardsSection.classList.remove('hidden')
   headerSection.classList.remove('hidden')
   loginContainer.classList.add('hidden')
-  let userNameNumber = userName.value.slice(8)
   Promise.all([fetchData(`travelers/${userNameNumber}`), fetchData("trips"), fetchData("destinations")])
   .then(data => {
     setData(data)
