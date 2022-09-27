@@ -24,6 +24,12 @@ describe('Repository', function() {
       expect(Repository).to.be.a('function')
     })
 
+    it('should have a property that stores data', () => {
+    expect(travelerRepo.data).to.equal(travelersData)
+    expect(destinationRepo.data).to.be.equal(destinationData)
+    expect(tripRepo.data).to.be.equal(tripsData)
+  })
+
     it('should be able to find user data given a user ID', () => {
     traveler1 = travelerRepo.findTraveler(1 ,'id')
     traveler2 = travelerRepo.findTraveler(2, 'id')

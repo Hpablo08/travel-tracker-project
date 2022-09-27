@@ -16,12 +16,14 @@ header, body {
 
 .logo-main {
   width: 200px;
-  margin:20px;
+  margin: 20px;
   position:
 }
-.display-name{
+
+.display-name {
   color: #ef8354;
 }
+
 .client-header {
   font-size: 25px;
   color: #202c39;
@@ -30,6 +32,7 @@ header, body {
 .trip-request-section {
   text-align: center;
 }
+
 /* Cards **************************/
 .cards-container {
   display: grid;
@@ -85,18 +88,18 @@ h4, h5 {
   height: 90px;
 }
 
- .submit-login, .log-in-btn, .display-estimate, .book-trip-btn, .trip-request-btn {
-font-size: 14px;
-cursor: pointer;
-background-color: #ffffff;
-color: #455A64;
-margin: 10px;
-padding: 8px;
-border-radius: 2px;
-border: none;
+.submit-login, .log-in-btn, .display-estimate, .book-trip-btn, .trip-request-btn {
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #455A64;
+  margin: 10px;
+  padding: 8px;
+  border-radius: 2px;
+  border: none;
 }
 
- .submit-login:hover, .log-in-btn:hover, .display-estimate:hover, .book-trip-btn:hover, .trip-request-btn:hover  {
+.submit-login:hover, .log-in-btn:hover, .display-estimate:hover, .book-trip-btn:hover, .trip-request-btn:hover {
   background-color: #ef8354;
   color: #ffffff;
 }
@@ -111,7 +114,7 @@ border: none;
   display: none;
 }
 
-/* Pop-up ********************************************* */
+/* Login ********************************************* */
 .logo {
   width: 150px;
 }
@@ -131,11 +134,6 @@ border: none;
   justify-content: center;
 }
 
-.popUp p {
-  font-size: 15px;
-  text-align: center;
-  margin: 20px 0;
-}
 
 /* FORM ************************************************ */
 input:invalid {
