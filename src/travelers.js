@@ -1,4 +1,3 @@
-
 class Traveler {
   constructor(data) {
     this.id = data.id
@@ -11,7 +10,7 @@ class Traveler {
   }
 
   setTravelerData(repo, dataArray, property) {
-   this[dataArray] = repo.findTraveler(this.id, property)
+    this[dataArray] = repo.findTraveler(this.id, property)
   }
 
   setTravelerDestinations(dataset) {
@@ -19,32 +18,20 @@ class Traveler {
   }
 
   calcMoneySpent() {
-  const pastTrips = this.trips.filter((trip) => trip.date > '2022/01/01').map((trip) => trip.destinationID)
-  const total = this.destinations.reduce((acc, destination) => {
-    if (pastTrips.includes(destination.id)) {
-      const currentPastTrip = this.trips.find((trip) => trip.destinationID === destination.id)
-      //console.log('trip', currentPastTrip)
-      const pastTripFlightCost = currentPastTrip.travelers * destination.estimatedFlightCostPerPerson
-      //console.log('COST flight', pastTripFlightCost)
-      const pastTripLodgingCost = currentPastTrip.duration * destination.estimatedLodgingCostPerDay
-    //  console.log('LODGING', pastTripLodgingCost)
-      acc += pastTripFlightCost + pastTripLodgingCost
-    //  console.log('TOTAL', acc)
+    const pastTrips = this.trips.filter((trip) => trip.date > '2022/01/01').map((trip) => trip.destinationID)
+    const total = this.destinations.reduce((acc, destination) => {
+      if (pastTrips.includes(destination.id)) {
+        const currentPastTrip = this.trips.find((trip) => trip.destinationID === destination.id)
+        const pastTripFlightCost = currentPastTrip.travelers * destination.estimatedFlightCostPerPerson
+        const pastTripLodgingCost = currentPastTrip.duration * destination.estimatedLodgingCostPerDay
+        acc += pastTripFlightCost + pastTripLodgingCost
       }
       return acc
- }, 0)
-  const fee = total * .10
-  //console.log('fee', fee)
-  const totalPlusFee = total + fee
-  return totalPlusFee.toFixed(2)
-  //console.log('total with fee', totalPlusFee)
-  // i want to use the past trips array and use it to find the destination ID
-  // then use those destinations properties to calculate the total const
-  // then return
-
+    }, 0)
+    const fee = total * .10
+    const totalPlusFee = total + fee
+    return totalPlusFee.toFixed(2)
   }
 }
-
-
 
 export default Traveler;

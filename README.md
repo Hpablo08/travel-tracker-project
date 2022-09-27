@@ -1,4 +1,4 @@
-# Tic-Tac-Toe
+# Traveler-Tracker
 
 ## Table of Contents
 - [Overview](#Overview)
@@ -11,98 +11,65 @@
 
 
 ## Overview
-This application is a chance for students to build a Tic-Tac-Toe app that allow users to play a game of tic-tac-toe. This Solo Challenge gave us a chance to show where we are with the foundational concepts of the Mod 1 curriculum. In this challenge, we utilized HTML, CSS, and JavaScript to create a functional app that will use game logic to play a game. I used the data model to display and update the DOM.
+This project is part of Turing Software and Designs' Front-End Program, Module 2. This application is a chance for students to build a travel tracker app that allow users to request a trip from a travel booking agency. This Solo Challenge exclusively uses array-prototype methods whenever iterations need to be performed. There are no for loops used in the program. A Webpack starter-kit was provided, but all code and tests are written by the assigned developer.  This program uses Object Oriented Programming to drive the design of the application and the code. This program focuses on working with an API to send and receive data (via fetch functions), the use of Sass alongside traditional css, and Mocha and Chai for testing class functions.
 
 
 ## Setup
-- Clone the repository to your local machine
+- Clone this repository to your local machine
+- Clone the Local server as well to view client data [Here](https://github.com/turingschool-examples/travel-tracker-api)
 - `cd` into the project
 - Run `npm install` to install project dependencies
 - Run `npm start` to launch the live server
 - Copy and paste the provided localhost URL into your browser
 - Explore and enjoy!
 
-## Screenshots
-<p align="center">Example Screenshot</br>
-  <img width="460" height="300" src="assets/game.png" alt="Screenshot of project">
-</p>
 
-<p align="center">Functionality</br>
-  <img width="460" height="300" src="assets/DesktopViewTour.gif" alt="Gif of application performing various functional actions">
-</p><p align="center"><img width="500" src="assets/example.gif" alt="Additional gif of application performing various functional actions">
+* [![JavaScript][JavaScript.com]][JavaScript-url]
+* [![CSS][w3.org/Style/CSS/Overview.en.html]][CSS-url]
+* [![HTML5][w3.org]][HTML-url]
+* [![Mocha][https://mochajs.org/]][Mocha-url]
+* [![Chai][https://www.chaijs.com/]][Chai-url]
+
+## Screenshots
+<p align="center">Example Login</br>
+  <img width="460" height="300" src="./images/Login.png" alt="Screenshot of login screen">
 </p>
+<br/>
+<p align="center">Example DashBoard</br>
+  <img width="460" height="300" src="./images/Dashboard.png" alt="Screenshot of dashboard">
+</p>
+<br/>
+<p align="center">
+    <img width="500" src="https://media.giphy.com/media/uZNsWVOCYEVJDSbOio/giphy.gif" alt="Additional gif of application performing various functional actions">
+</p>
+<br/>
+
 
 ## Features
-- The game keeps tracks of the score and stores the data in local localStorage
-- The game displays which player turn it is, if they are winner, and if the game is a draw
+- Allow users to login to a specific traveler's data.
+- Allow users to select how many travelers, how long of a trip, and what destination they would like to go to.
+- The application offers users to see the trip estimate with the agency fee prior to booking a trip
+- The application allows you to request a trip and the DOM will update showing the new 'Pending' trip on the dash board.
 
 
 ## Links
-- The spec for this project can be found [here](https://frontend.turing.edu/projects/module-1/tic-tac-toe-solo-v2.html).
+- The spec for this project can be found [here](https://github.com/Hpablo08/travel-tracker-project).
 
 
 ## Contributors
-- [Hazel Pablo](https://github.com/Hpablo08?tab=repositories)
+- Hazel Pablo - [LinkedIn](https://www.linkedin.com/in/hazel-pablo-704779245/) - [GitHub](https://github.com/Hpablo08)
 
-## Technologies
-  - Javascript
-  - HTML
-  - CSS
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
-
-delete this line
+<!-- MARKDOWN LINKS & IMAGES -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/matthew-press-813961246/
+[product-demo]: images/demo.gif
+[JavaScript.com]: https://img.shields.io/badge/-JavaScript-yellow
+[JavaScript-url]: https://www.javascript.com/
+[w3.org/Style/CSS/Overview.en.html]: https://img.shields.io/badge/-CSS-blue
+[CSS-url]: https://www.w3.org/Style/CSS/Overview.en.html
+[w3.org]: https://img.shields.io/badge/-HTML5-red
+[HTML-url]: https://www.w3.org/
+[Mocha-url]: https://mochajs.org/
+[https://mochajs.org/]: https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white
+[Chai-url]: https://www.chaijs.com/
+[https://www.chaijs.com/]: https://img.shields.io/badge/Chai-A30701?style=for-the-badge&logo=chai&logoColor=white

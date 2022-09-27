@@ -1,16 +1,9 @@
 // DEPENDENCIES **************************************************
-import {
-  fetchData,
-  postData
-} from './apiCalls';
+import { fetchData, postData } from './apiCalls';
 import './css/styles.css';
 import Repository from './repository';
 import Traveler from './travelers';
 import './images/logo.png';
-
-
-
-
 
 // DOM ELEMENTS ***************************************************
 const travelerName = document.querySelector('.display-name')
@@ -53,7 +46,6 @@ let newId
 let bookButton
 
 // FUNCTIONS *****************************************************
-
 function checkLoginData() {
   let userNameNumber = userName.value.slice(8)
   if (userName.value === "" || password.value === "") {
@@ -86,7 +78,6 @@ function setData(data) {
   destinationRepository = new Repository(data[2].destinations)
   randomTraveler.setTravelerData(tripRepository, 'trips', 'userID')
   randomTraveler.setTravelerDestinations(destinationRepository)
-  // console.log('random', randomTraveler)
   displayData()
 }
 
