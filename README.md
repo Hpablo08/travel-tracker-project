@@ -3,11 +3,12 @@
 ## Table of Contents
 - [Overview](#Overview)
 - [Setup](#Setup)
+- [Technologies](#Technologies)
 - [ScreenShots](#ScreenShots)
 - [Features](#Features)
 - [Links](#Links)
 - [Contributors](#Contributors)
-- [Technologies](#Technologies)
+
 
 
 ## Overview
@@ -23,7 +24,7 @@ This project is part of Turing Software and Designs' Front-End Program, Module 2
 - Copy and paste the provided localhost URL into your browser
 - Explore and enjoy!
 
-
+##Technologies
 * [![JavaScript][JavaScript.com]][JavaScript-url]
 * [![CSS][w3.org/Style/CSS/Overview.en.html]][CSS-url]
 * [![HTML5][w3.org]][HTML-url]
@@ -32,11 +33,11 @@ This project is part of Turing Software and Designs' Front-End Program, Module 2
 
 ## Screenshots
 <p align="center">Example Login</br>
-  <img width="460" height="300" src="/images/Login.png" alt="Screenshot of login screen">
+  <img width="460" height="300" src="src/images/Login.png" alt="Screenshot of login screen">
 </p>
 <br/>
 <p align="center">Example DashBoard</br>
-  <img width="460" height="300" src="/images/Dashboard.png" alt="Screenshot of dashboard">
+  <img width="460" height="300" src="src/images/Dashboard.png" alt="Screenshot of dashboard">
 </p>
 <br/>
 <p align="center">
