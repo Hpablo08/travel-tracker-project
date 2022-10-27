@@ -1,15 +1,19 @@
 
 function fetchData(repo) {
-  return fetch(`http://localhost:3001/api/v1/${repo}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Not a 200 status');
-        }        
-        return response.json();
-      })
-      .catch(error => {
-        alert('Oops, something went wrong in the fetch. Try refreshing your page.');
-      })
+  return fetch(
+    `https://travel-tracker-project-ibavr8vap-hpablo08.vercel.app//api/v1/${repo}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Not a 200 status");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      alert(
+        "Oops, something went wrong in the fetch. Try refreshing your page."
+      );
+    });
 }
 
 function postData(repo, userData) {
